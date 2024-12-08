@@ -1,0 +1,82 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct element{
+int val;
+
+struct element*suivant;
+} element;
+element*creerListe(){
+return NULL;
+}
+element *chargerListe(int Tab[],int taille,element*liste){
+
+for(int i=0;i<taille;i++){   
+  element* nouveau =(element*)malloc(sizeof(element));
+   
+  nouveau->val=Tab[i];
+  nouveau->suivant =liste;
+  liste=nouveau;
+  
+
+}return liste;
+}
+   void afficherListe(element* liste){
+  if(liste== NULL){
+   printf("la liste est vide\n");
+   return;
+}element *courant=liste;
+
+while(courant!=NULL){
+  printf("%d ->",courant->val);
+  courant=courant->suivant;
+}
+    printf("NULL\n");
+}
+element*AjouterEnDebut(element*liste,int valeur){
+   element*nouveau=(element*)malloc(sizeof(element));
+  
+  nouveau->val=valeur;
+  nouveau->suivant =liste;
+
+return nouveau;
+}
+element*supprimerEnFin(element*liste){
+if(liste==NULL){
+free(liste);
+  return NULL;
+
+}
+element*courant=liste;
+while(courant->suivant!=NULL && courant->suivant->suivant!=NULL){
+  courant=courant->suivant;
+}
+
+free(courant->suivant);
+  courant->suivant=NULL;
+return liste;
+  }
+void viderListe(element*liste){
+  element*courant;
+  while(liste!=NULL){
+   courant =liste;
+   liste=liste->suivant;
+   free(courant);
+  }printf("la liste est vide.\n");
+} 
+int main(){
+  int Tab[10]={1,2,3,4,5,6,7,8,9,10};
+  element*liste=creerListe();
+  liste=chargerListe(Tab,10,liste);
+  afficherListe(liste);
+  liste=AjouterEnDebut(liste,40);
+  afficherListe(liste);
+  liste=supprimerEnFin(liste);
+  afficherListe(liste);
+        viderListe(liste);
+     liste=NULL;
+        afficherListe(liste);
+
+
+        return 0;
+
+}
