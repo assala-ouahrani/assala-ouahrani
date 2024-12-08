@@ -1,0 +1,49 @@
+printf("Exercice 02:\n");
+
+printf("donne n :\n");
+scanf("%d",&n);
+
+printf("\ndonne la matrice :\n");
+for(i=0;i<n;i++){
+for(j=0;j<n;j++){
+printf("A[%d][%d]= ",i,j); 
+scanf("\n%d",&A[i][j]);
+}
+} 
+
+printf("\n");
+printf("\tAvant: \n");
+for(i=0;i<n;i++){
+ for(j=0;j<n;j++){
+printf("\t%d",A[i][j]);
+}
+printf("\n");
+}
+
+for( i=0;i<n;i++){
+ for( j=0;j<n;j++){
+  if(i!=j){
+  O[i][j]=A[i][j];
+  A[i][j]=A[j][i];
+  }
+ }
+}
+for( i=0;i<n;i++){
+ for( j=0;j<n;j++){
+  if(i!=j){
+  A[j][i]=O[i][j]; 
+  }
+ }
+}
+
+printf("\n");
+
+printf("\tApres: \n");
+for( i=0;i<n;i++){
+ for( j=0;j<n;j++){
+printf("\t%d",A[i][j]);
+}
+printf("\n");
+}
+return 0;
+}
